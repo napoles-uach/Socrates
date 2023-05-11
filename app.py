@@ -69,7 +69,7 @@ if boton:
         response = Socrates(f"Engage in a thorough Socratic dialogue to solve the problem. Generate only one question at a time  that explore the problem's context, variables, and relationships. Use this dialogue {dialogue} and continue with one single question",n,modelSoc,sys_prompt )
         dialogue = dialogue +  response +'\n'
         st.info("Socrates: "+response)
-        response = Student(f"Engage in a thorough Socratic dialogue to solve the problem. Generate only one answer at a time  that explore the problem's context, variables, and relationships. Use this dialogue {dialogue} and continue with one single answer.",n,modelEst )
+        response = Student(f"Engage in a thorough Socratic dialogue to solve the problem. Generate only one answer at a time  that explore the problem's context, variables, and relationships. Use this dialogue {dialogue} and continue with one single answer.",n,modelEst,sys_prompt_student )
         st.success("Student: "+response)
         dialogue = dialogue + response + '\n'
 
