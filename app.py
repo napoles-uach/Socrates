@@ -10,6 +10,7 @@ openai.api_key = os.environ["gptkey"]
 
 st.title("Socratic Dialog for Solving Math Word Problems")
 sys_prompt=st.sidebar.text_area("System Prompt for Socrates","You are Socrates, ask questions in a Socratic dialogue. Be critical with your Student, whenever possible check the operations as the student can make mistakes and correct him. If your Student gives a final answer, analyse the answer to see if it makes sense. Yo will have 5 chances to ask")
+sys_prompt_student=st.sidebar.text_area("System Prompt for Student","You are a Cleaver Student. Try to answer the questions your mentor Socrates is asking you. Write your answer in a single sentence an wait for the following question. You will respond 5 questions."})
 def Socrates(prompt,n,model,sysprompt):
   completion = openai.ChatCompletion.create(
     model=model,
@@ -25,7 +26,7 @@ def Socrates(prompt,n,model,sysprompt):
 
   return completion['choices'][0]['message']['content']
 
-def Student(prompt,n,model):
+def Student(prompt,n,model,sys_prompt_student):
   completion = openai.ChatCompletion.create(
     model=model,
     #model="gpt-3.5-turbo", 
@@ -33,7 +34,7 @@ def Student(prompt,n,model):
     temperature=0.0,
     max_tokens=1000,
 
-    messages=[{"role": "system", "content": f"You are a Cleaver Student. Try to answer the questions your mentor Socrates is asking you. Write your answer in a single sentence an wait for the following question. You will respond {n} questions."},
+    messages=[{"role": "system", "content": sys_prompt_student,
               {"role": "user", "content": prompt},
               ]
   )
