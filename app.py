@@ -81,5 +81,5 @@ one playing the role of "Socrates" (GPT-3-turbo) and the other as a "Student" (G
 This aproach is particularly useful for complex problems, where a single GPT model can fail.
 
 Author: Jose M. Napoles-Duarte
-@napoles3d
+#@napoles3d
 ''')
