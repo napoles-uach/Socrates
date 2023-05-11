@@ -50,9 +50,9 @@ puede dejar que se acerque la tortuga antes de reanudar la
 carrera, que gana la tortuga en un final de fotografía? Suponga
 que ambos animales, cuando se mueven, lo hacen de manera
 constante a su respectiva rapidez máxima.'''
-problem = st.text_input("Enter your problem","The quadratic $3x^2-24x+72$ can be written in the form $a(x+b)^2+c$, where $a$, $b$, and $c$ are constants. What is $a+b+c$?")
+problem = st.text_input("Enter your problem",text_example)
 with st.sidebar.expander("Examples", expanded=False):
-    st.text(" 1) Bob can travel $m$ miles in $h$ hours on his bicycle. At this rate, how many hours would it take him to travel $h$ miles? Express your answer in terms of $m$ and $h$.")
+    st.text(" 1) The quadratic $3x^2-24x+72$ can be written in the form $a(x+b)^2+c$, where $a$, $b$, and $c$ are constants. What is $a+b+c$?")
     st.text("2) An equilateral triangle has all three of its vertices on the parabola $y=x^2-8x+5$. One vertex of the triangle is on the vertex of the parabola, and the opposite side lies along the line $y=k$. What is the value of $k$?")
     st.text("3) The shortest distance from the circle $x^2 + y^2 = 4x + 8y$ to the point $(5,-2)$ can be written in the form $\sqrt{m}$, where $m$ is an integer. Find $m$.")
     st.text("4) Heisenberg's Uncertainty Principle says that the product of the error in the measurement of a particle's momentum and the error in the measurement of a particle's position must be at least Planck's constant divided by $4\pi$. Suppose the error in the measurement of the momentum of a particle is halved. By how many percent does the minimum error in the measurement of its position increase?")
