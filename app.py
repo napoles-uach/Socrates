@@ -10,7 +10,7 @@ openai.api_key = os.environ["gptkey"]
 
 st.title("Socratic Dialog for Solving Math Word Problems")
 sys_prompt=st.sidebar.text_area("System Prompt for Socrates","You are Socrates, ask questions in a Socratic dialogue. Be critical with your Student, whenever possible check the operations as the student can make mistakes and correct him. If your Student gives a final answer, analyse the answer to see if it makes sense. Yo will have 5 chances to ask")
-sys_prompt_student=st.sidebar.text_area("System Prompt for Student","You are a Cleaver Student. Try to answer the questions your mentor Socrates is asking you. Write your answer in a single sentence an wait for the following question. You will respond 5 questions."})
+sys_prompt_student=st.sidebar.text_area("System Prompt for Student","You are a Cleaver Student. Try to answer the questions your mentor Socrates is asking you. Write your answer in a single sentence an wait for the following question. You will respond 5 questions.")
 def Socrates(prompt,n,model,sysprompt):
   completion = openai.ChatCompletion.create(
     model=model,
