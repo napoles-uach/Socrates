@@ -12,7 +12,7 @@ st.title("Socratic Dialog for Solving Math Word Problems")
 
 def Socrates(prompt,n,model):
   completion = openai.ChatCompletion.create(
-    model=model
+    model=model,
     #model="gpt-3.5-turbo", 
     #model="gpt-4",
     temperature=0.3,
@@ -27,7 +27,7 @@ def Socrates(prompt,n,model):
 
 def Student(prompt,n,model):
   completion = openai.ChatCompletion.create(
-    model=model
+    model=model,
     #model="gpt-3.5-turbo", 
     #model="gpt-4",
     temperature=0.0,
