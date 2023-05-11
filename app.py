@@ -49,8 +49,8 @@ with st.sidebar.expander("Examples", expanded=False):
     st.text("4) Heisenberg's Uncertainty Principle says that the product of the error in the measurement of a particle's momentum and the error in the measurement of a particle's position must be at least Planck's constant divided by $4\pi$. Suppose the error in the measurement of the momentum of a particle is halved. By how many percent does the minimum error in the measurement of its position increase?")
 
 dialogue = problem + '\n'+"Socrates: "
-modelSoc=st.slider('model',['gpt-3.5-turbo','gpt-4'])
-modelEst=st.slider('model',['gpt-3.5-turbo','gpt-4'])
+modelSoc=st.selectbox('model',['gpt-3.5-turbo','gpt-4'])
+modelEst=st.selectbox('model',['gpt-3.5-turbo','gpt-4'])
 boton = st.button('Run dialogue')
 if boton:
     n=5
