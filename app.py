@@ -40,7 +40,7 @@ def Student(prompt,n,model):
 
   return completion['choices'][0]['message']['content']
 
-text_example = ```Una liebre y una tortuga compiten en una carrera en una ruta
+text_example = '''Una liebre y una tortuga compiten en una carrera en una ruta
 de 1.00 km de largo. La tortuga paso a paso continuo y de
 manera estable a su máxima rapidez de 0.200 m/s se dirige
 hacia la línea de meta. La liebre corre a su máxima rapidez de
@@ -49,7 +49,7 @@ para fastidiar a la tortuga. ¿Cuán cerca de la meta la liebre
 puede dejar que se acerque la tortuga antes de reanudar la
 carrera, que gana la tortuga en un final de fotografía? Suponga
 que ambos animales, cuando se mueven, lo hacen de manera
-constante a su respectiva rapidez máxima.```
+constante a su respectiva rapidez máxima.'''
 problem = st.text_input("Enter your problem","The quadratic $3x^2-24x+72$ can be written in the form $a(x+b)^2+c$, where $a$, $b$, and $c$ are constants. What is $a+b+c$?")
 with st.sidebar.expander("Examples", expanded=False):
     st.text(" 1) Bob can travel $m$ miles in $h$ hours on his bicycle. At this rate, how many hours would it take him to travel $h$ miles? Express your answer in terms of $m$ and $h$.")
