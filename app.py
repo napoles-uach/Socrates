@@ -9,8 +9,8 @@ st.set_page_config(
 openai.api_key = os.environ["gptkey"]
 
 st.title("Socratic Dialog for Solving Math Word Problems")
-
-def Socrates(prompt,n,model):
+sys_prompt=st.sidebar.text_input("You are Socrates, ask questions in a Socratic dialogue. Be critical with your Student, whenever possible check the operations as the student can make mistakes and correct him. If your Student gives a final answer, analyse the answer to see if it makes sense. Yo will have 5 chances to ask")
+def Socrates(prompt,n,model,sysprompt):
   completion = openai.ChatCompletion.create(
     model=model,
     #model="gpt-3.5-turbo", 
@@ -18,7 +18,7 @@ def Socrates(prompt,n,model):
     temperature=0.3,
     max_tokens=1000,
 
-    messages=[{"role": "system", "content": f"You are Socrates, ask questions in a Socratic dialogue. Be critical with your Student, whenever possible check the operations as the student can make mistakes and correct him. If your Student gives a final answer, analyse the answer to see if it makes sense. Yo will have {n} chances to ask"},
+    messages=[{"role": "system", "content": sysprompt},
               {"role": "user", "content": prompt},
               ]
   )
@@ -65,7 +65,7 @@ if boton:
     n=5
     for i in range(1,n+1):
         dialogue = dialogue + "Question "+str(i) + '\n'
-        response = Socrates(f"Engage in a thorough Socratic dialogue to solve the problem. Generate only one question at a time  that explore the problem's context, variables, and relationships. Use this dialogue {dialogue} and continue with one single question",n,modelSoc )
+        response = Socrates(f"Engage in a thorough Socratic dialogue to solve the problem. Generate only one question at a time  that explore the problem's context, variables, and relationships. Use this dialogue {dialogue} and continue with one single question",n,modelSoc,sys_prompt )
         dialogue = dialogue +  response +'\n'
         st.info("Socrates: "+response)
         response = Student(f"Engage in a thorough Socratic dialogue to solve the problem. Generate only one answer at a time  that explore the problem's context, variables, and relationships. Use this dialogue {dialogue} and continue with one single answer.",n,modelEst )
