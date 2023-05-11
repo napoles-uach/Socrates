@@ -40,15 +40,15 @@ def Student(prompt,n,model):
 
   return completion['choices'][0]['message']['content']
 
-text_example = '''Una liebre y una tortuga compiten en una carrera en una ruta
-de 1.00 km de largo. La tortuga paso a paso continuo y de
-manera estable a su máxima rapidez de 0.200 m/s se dirige
-hacia la línea de meta. La liebre corre a su máxima rapidez de
-8.00 m/s hacia la meta durante 0.800 km y luego se detiene
-para fastidiar a la tortuga. ¿Cuán cerca de la meta la liebre
-puede dejar que se acerque la tortuga antes de reanudar la
-carrera, que gana la tortuga en un final de fotografía? Suponga
-que ambos animales, cuando se mueven, lo hacen de manera
+text_example = '''Una liebre y una tortuga compiten en una carrera en una ruta 
+de 1.00 km de largo. La tortuga paso a paso continuo y de 
+manera estable a su máxima rapidez de 0.200 m/s se dirige 
+hacia la línea de meta. La liebre corre a su máxima rapidez de 
+8.00 m/s hacia la meta durante 0.800 km y luego se detiene 
+para fastidiar a la tortuga. ¿Cuán cerca de la meta la liebre 
+puede dejar que se acerque la tortuga antes de reanudar la 
+carrera, que gana la tortuga en un final de fotografía? Suponga 
+que ambos animales, cuando se mueven, lo hacen de manera 
 constante a su respectiva rapidez máxima.'''
 problem = st.text_input("Enter your problem",text_example)
 with st.sidebar.expander("Examples", expanded=False):
