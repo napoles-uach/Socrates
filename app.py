@@ -10,9 +10,10 @@ openai.api_key = os.environ["gptkey"]
 
 st.title("Socratic Dialog for Solving Math Word Problems")
 
-def Socrates(prompt,n):
+def Socrates(prompt,n,model):
   completion = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo", 
+    model=model
+    #model="gpt-3.5-turbo", 
     #model="gpt-4",
     temperature=0.3,
     max_tokens=1000,
@@ -24,9 +25,10 @@ def Socrates(prompt,n):
 
   return completion['choices'][0]['message']['content']
 
-def Student(prompt,n):
+def Student(prompt,n,model):
   completion = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo", 
+    model=model
+    #model="gpt-3.5-turbo", 
     #model="gpt-4",
     temperature=0.0,
     max_tokens=1000,
@@ -47,16 +49,17 @@ with st.sidebar.expander("Examples", expanded=False):
     st.text("4) Heisenberg's Uncertainty Principle says that the product of the error in the measurement of a particle's momentum and the error in the measurement of a particle's position must be at least Planck's constant divided by $4\pi$. Suppose the error in the measurement of the momentum of a particle is halved. By how many percent does the minimum error in the measurement of its position increase?")
 
 dialogue = problem + '\n'+"Socrates: "
-
+modelSoc=st.slider('model',['gpt-3.5-turbo','gpt-4'])
+modelEst=st.slider('model',['gpt-3.5-turbo','gpt-4'])
 boton = st.button('Run dialogue')
 if boton:
     n=5
     for i in range(1,n+1):
         dialogue = dialogue + "Question "+str(i) + '\n'
-        response = Socrates(f"Engage in a thorough Socratic dialogue to solve the problem. Generate only one question at a time  that explore the problem's context, variables, and relationships. Use this dialogue {dialogue} and continue with one single question",n )
+        response = Socrates(f"Engage in a thorough Socratic dialogue to solve the problem. Generate only one question at a time  that explore the problem's context, variables, and relationships. Use this dialogue {dialogue} and continue with one single question",n,modelSoc )
         dialogue = dialogue +  response +'\n'
         st.info("Socrates: "+response)
-        response = Student(f"Engage in a thorough Socratic dialogue to solve the problem. Generate only one answer at a time  that explore the problem's context, variables, and relationships. Use this dialogue {dialogue} and continue with one single answer.",n )
+        response = Student(f"Engage in a thorough Socratic dialogue to solve the problem. Generate only one answer at a time  that explore the problem's context, variables, and relationships. Use this dialogue {dialogue} and continue with one single answer.",n,modelEst )
         st.success("Student: "+response)
         dialogue = dialogue + response + '\n'
 
