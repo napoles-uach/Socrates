@@ -34,7 +34,7 @@ def Student(prompt,n,model,sys_prompt_student):
     temperature=0.0,
     max_tokens=1000,
 
-    messages=[{"role": "system", "content": sys_prompt_student,
+    messages=[{"role": "system", "content": sys_prompt_student},
               {"role": "user", "content": prompt},
               ]
   )
