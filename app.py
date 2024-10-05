@@ -12,34 +12,65 @@ st.title("Socratic Dialog for Solving Math Word Problems")
 sys_prompt=st.text_area("System Prompt for Socrates","You are Socrates, ask questions in a Socratic dialogue. Be critical with your Student, whenever possible check the operations as the student can make mistakes and correct him. If your Student gives a final answer, analyse the answer to see if it makes sense. Yo will have 5 chances to ask")
 sys_prompt_student=st.text_area("System Prompt for Student","You are a Cleaver Student. Try to answer the questions your mentor Socrates is asking you. Write your answer in a single sentence an wait for the following question. You will respond 5 questions.")
 def Socrates(prompt,n,model,sysprompt):
-  completion = openai.ChatCompletion.create(
-    model=model,
-    #model="gpt-3.5-turbo", 
-    #model="gpt-4",
-    temperature=0.3,
-    max_tokens=1000,
+    client = OpenAI(api_key=st.secrets["gpt_key"])
+    completion = client.chat.completions.create(
+       # model = "gpt-3.5-turbo-0125",
+       # model="gpt-4-turbo-2024-04-09",
+      model=model#"gpt-4o-mini",
+      #model="gpt-4o",
+      #model="gpt-3.5-turbo-1106",
+      messages=[
+        {"role": "system", "content": sysprompt},
+        {"role": "user", "content": prompt}
+      ],
+      max_tokens=1000
+    )
+    return completion.choices[0].message.content
 
-    messages=[{"role": "system", "content": sysprompt},
-              {"role": "user", "content": prompt},
-              ]
-  )
-
-  return completion['choices'][0]['message']['content']
+#def Socrates(prompt,n,model,sysprompt):
+#  completion = openai.ChatCompletion.create(
+#    model=model,
+#    #model="gpt-3.5-turbo", 
+#    #model="gpt-4",
+#    temperature=0.3,
+#    max_tokens=1000,
+#
+#    messages=[{"role": "system", "content": sysprompt},
+#              {"role": "user", "content": prompt},
+#              ]
+#  )
+#
+#  return completion['choices'][0]['message']['content']
 
 def Student(prompt,n,model,sys_prompt_student):
-  completion = openai.ChatCompletion.create(
-    model=model,
-    #model="gpt-3.5-turbo", 
-    #model="gpt-4",
-    temperature=0.0,
-    max_tokens=1000,
-
-    messages=[{"role": "system", "content": sys_prompt_student},
-              {"role": "user", "content": prompt},
-              ]
-  )
-
-  return completion['choices'][0]['message']['content']
+    client = OpenAI(api_key=st.secrets["gpt_key"])
+    completion = client.chat.completions.create(
+       # model = "gpt-3.5-turbo-0125",
+       # model="gpt-4-turbo-2024-04-09",
+      model=model#"gpt-4o-mini",
+      #model="gpt-4o",
+      #model="gpt-3.5-turbo-1106",
+      messages=[
+        {"role": "system", "content": sysprompt},
+        {"role": "user", "content": prompt}
+      ],
+      max_tokens=1000
+    )
+    return completion.choices[0].message.content
+#def Student(prompt,n,model,sys_prompt_student):
+#  completion = openai.ChatCompletion.create(
+#    model=model,
+#    #model="gpt-3.5-turbo", 
+#    #model="gpt-4",
+#    temperature=0.0,
+#    max_tokens=1000,
+#
+#    messages=[{"role": "system", "content": sys_prompt_student},
+#              {"role": "user", "content": prompt},
+#              ]
+#  )
+#
+#  return completion['choices'][0]['message']['content']
 
 text_example = '''Una liebre y una tortuga compiten en una carrera en una ruta 
 de 1.00 km de largo. La tortuga paso a paso continuo y de 
@@ -59,8 +90,8 @@ with st.sidebar.expander("Examples", expanded=False):
     st.text("4) Heisenberg's Uncertainty Principle says that the product of the error in the measurement of a particle's momentum and the error in the measurement of a particle's position must be at least Planck's constant divided by $4\pi$. Suppose the error in the measurement of the momentum of a particle is halved. By how many percent does the minimum error in the measurement of its position increase?")
 
 dialogue = problem + '\n'+"Socrates: "
-modelSoc=st.selectbox('model for Socrates',['gpt-3.5-turbo','gpt-4'])
-modelEst=st.selectbox('model for Student',['gpt-3.5-turbo','gpt-4'])
+modelSoc=st.selectbox('model for Socrates',['gpt-4o-mini','gpt-4o'])
+modelEst=st.selectbox('model for Student',['gpt-4o-mini','gpt-4o'])
 boton = st.button('Run dialogue')
 if boton:
     n=5
