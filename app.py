@@ -16,7 +16,7 @@ def Socrates(prompt,n,model,sysprompt):
     completion = client.chat.completions.create(
        # model = "gpt-3.5-turbo-0125",
        # model="gpt-4-turbo-2024-04-09",
-      model=model#"gpt-4o-mini",
+      model=model,#"gpt-4o-mini",
       #model="gpt-4o",
       #model="gpt-3.5-turbo-1106",
       messages=[
@@ -47,7 +47,7 @@ def Student(prompt,n,model,sys_prompt_student):
     completion = client.chat.completions.create(
        # model = "gpt-3.5-turbo-0125",
        # model="gpt-4-turbo-2024-04-09",
-      model=model#"gpt-4o-mini",
+      model=model,#"gpt-4o-mini",
       #model="gpt-4o",
       #model="gpt-3.5-turbo-1106",
       messages=[
