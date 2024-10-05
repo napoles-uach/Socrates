@@ -8,6 +8,7 @@ st.set_page_config(
 )
 # Get the API key for the OpenAI API.
 #openai.api_key = os.environ["gptkey"]
+openai.api_key = st.secrets["gptkey"]
 
 st.title("Socratic Dialog for Solving Math Word Problems")
 sys_prompt=st.text_area("System Prompt for Socrates","You are Socrates, ask questions in a Socratic dialogue. Be critical with your Student, whenever possible check the operations as the student can make mistakes and correct him. If your Student gives a final answer, analyse the answer to see if it makes sense. Yo will have 5 chances to ask")
