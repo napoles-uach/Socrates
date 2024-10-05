@@ -13,7 +13,7 @@ st.title("Socratic Dialog for Solving Math Word Problems")
 sys_prompt=st.text_area("System Prompt for Socrates","You are Socrates, ask questions in a Socratic dialogue. Be critical with your Student, whenever possible check the operations as the student can make mistakes and correct him. If your Student gives a final answer, analyse the answer to see if it makes sense. Yo will have 5 chances to ask")
 sys_prompt_student=st.text_area("System Prompt for Student","You are a Cleaver Student. Try to answer the questions your mentor Socrates is asking you. Write your answer in a single sentence an wait for the following question. You will respond 5 questions.")
 def Socrates(prompt,n,model,sysprompt):
-    client = OpenAI(api_key=st.secrets["gpt_key"])
+    client = OpenAI(api_key=st.secrets["gptkey"])
     completion = client.chat.completions.create(
        # model = "gpt-3.5-turbo-0125",
        # model="gpt-4-turbo-2024-04-09",
@@ -44,7 +44,7 @@ def Socrates(prompt,n,model,sysprompt):
 #  return completion['choices'][0]['message']['content']
 
 def Student(prompt,n,model,sys_prompt_student):
-    client = OpenAI(api_key=st.secrets["gpt_key"])
+    client = OpenAI(api_key=st.secrets["gptkey"])
     completion = client.chat.completions.create(
        # model = "gpt-3.5-turbo-0125",
        # model="gpt-4-turbo-2024-04-09",
